@@ -1,0 +1,108 @@
+dataset:
+  dataset_name: sevir_lr
+  img_height: 128
+  img_width: 128
+  in_len: 7
+  out_len: 6
+  seq_len: 13
+  plot_stride: 1
+  interval_real_time: 10
+  sample_mode: sequent
+  stride: 6
+  layout: NTHWC
+  num_workers: 24
+  start_date: null
+  train_val_split_date:
+  - 2019
+  - 1
+  - 1
+  train_test_split_date:
+  - 2019
+  - 6
+  - 1
+  end_date: null
+  metrics_mode: '0'
+  metrics_list:
+  - csi
+  - pod
+  - sucr
+  - bias
+  - ets
+  threshold_list:
+  - 16
+  - 74
+  - 133
+  - 160
+  - 181
+  - 219
+
+layout:
+  in_len: 7
+  out_len: 6
+  layout: NTHWC
+
+optim:
+  total_batch_size: 120
+  micro_batch_size: 4
+  seed: 0
+  method: adamw
+  lr: 0.001
+  wd: 0.0
+  gradient_clip_val: 1.0
+  max_epochs: 100
+  lr_scheduler_mode: cosine
+  min_lr_ratio: 0.001
+  warmup_min_lr_ratio: 0.0
+  warmup_percentage: 0.2
+  early_stop: true
+  early_stop_mode: min
+  early_stop_patience: 20
+  save_top_k: 1
+
+logging:
+  logging_prefix: HistCastNet_SEVIR_LR
+  monitor_lr: true
+  monitor_device: false
+  track_grad_norm: -1
+  use_wandb: false
+
+trainer:
+  check_val_every_n_epoch: 1
+  log_step_ratio: 0.001
+  precision: 16
+
+vis:
+  train_example_data_idx_list: []
+  val_example_data_idx_list: []
+  test_example_data_idx_list: [217, 3939]
+  eval_example_only: false
+  plot_stride: 1
+  save_individual_frames: true
+
+model:
+  use_wavelet_backbone: true
+  use_temporal_attn: true
+  use_spatial_attn: true
+  event_loss:
+    enable: true
+    thr_raw_list: [133, 160, 181, 219]
+    thr_weight_list: [0.1, 0.2, 0.3, 0.4]
+    temp_list: [0.1, 0.08, 0.05, 0.02]
+    gamma: 2.0
+    alpha: 0.55
+
+  loss_weights:
+    renormalize: true
+    base: 0.60
+    event: 0.40
+    ffl: 0.0
+    wavelet: 0.0
+
+  base_units: 64
+  stage1_dim: 128
+  num_blocks_stage0: 2
+  num_blocks_stage1: 2
+  num_heads: 4
+  window_size: [8, 8]
+  attn_drop: 0.1
+  ffn_drop: 0.1

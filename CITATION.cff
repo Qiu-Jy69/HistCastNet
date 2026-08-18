@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use HistCastNet, please cite this work."
+title: "HistCastNet: A State-Guided Historical Retrieval Network for Short-Term Precipitation Forecasting"
+type: software
+authors:
+  - family-names: Gai
+    given-names: Rongli
+  - family-names: Qiu
+    given-names: Jinying
+version: 0.1.0
+date-released: 2026-08-18
+license: Apache-2.0
