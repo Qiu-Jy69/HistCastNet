@@ -11,10 +11,10 @@ State-guided historical retrieval for short-term precipitation forecasting.
 
 - **Name:** HistCastNet
 - **Language:** Python 3.9+
-- **Hardware:** CUDA-capable GPU recommended; paper experiments used three NVIDIA RTX 4090 GPUs
-- **Dependencies:** PyTorch, PyTorch Lightning, h5py, NumPy, pandas, SciPy, Matplotlib, OmegaConf, and TorchMetrics
-- **Source size:** approximately 1.3 MB, excluding Git metadata
-- **Data:** SEVIR VIL; data are not redistributed by this repository
+- **Hardware:** CUDA-capable GPU recommended, paper experiments used three NVIDIA RTX 4090 GPUs
+- **Dependencies:** Python 3.9 or later, PyTorch 1.10 or later, PyTorch Lightning 1.8 or later, h5py 2.10.0 or later, NumPy, pandas, OmegaConf, TorchMetrics, Matplotlib
+- **Source size:** 1.3 MB
+- **Data:** SEVIR VIL, data are not redistributed by this repository
 
 HistCastNet forecasts six future VIL frames from seven observed frames at 10-minute intervals. It combines a one-level Haar wavelet representation, a Wavelet-domain Temporal-Spatial Attention Encoder (WTSAE), and a Forecast-State-Guided Hierarchical Retrieval Decoder (FSHRD). The training objective combines intensity-weighted reconstruction, neighborhood consistency, and multi-threshold event supervision.
 
